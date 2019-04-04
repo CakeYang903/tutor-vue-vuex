@@ -1,41 +1,36 @@
-import requestAsync from './_nativeApi';
+import requestAsync from "./_nativeApi";
 interface state {
   [key: string]: any;
 }
 const state: state = {
-  symbol: '',
-}
+  symbol: "",
+};
 const getters = {
   exchangeSymbol: (state: state) => {
-    return state.symbol
+    return state.symbol;
   },
 };
 
 interface store {
-  commit: Function,
+  commit: () => void;
   state: {
-    [key: string]: any
-  }
-};
+    [key: string]: any;
+  };
+}
 const actions = {
   // Restful API - const static data
   getSymbols: async (store: store) => {
-    await requestAsync('get', {
-      url: 'ccxt/symbols',
-    })
+    await requestAsync("get", {
+      url: "ccxt/symbols",
+    });
   },
 };
 
 const mutations = {
   // Navigation
   setSymbol: (state: state, symbol: string) => {
-    state.symbol = symbol
+    state.symbol = symbol;
   },
 };
 
-export {
-  state,
-  getters,
-  actions,
-  mutations,
-}
+export { state, getters, actions, mutations };
