@@ -4,9 +4,9 @@ interface store {
 }
 interface options {
   url: string,
-  headers: Object,
-  data: Object,
-  params: Object
+  headers?: Object,
+  data?: Object,
+  params?: Object
 }
 export default async function requestAsync({ commit }: store, type: string, options: options) {
   // Extract Type
