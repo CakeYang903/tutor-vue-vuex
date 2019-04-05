@@ -1,4 +1,8 @@
-import requestAsync from "./_nativeApi";
+import { createTypes, createGetters, createMutations } from "./_vuexTool";
+import requestAsync from "./_vuexApi";
+
+const types = createTypes(["getMessageByTool"]);
+
 interface state {
   [key: string]: any;
 }
@@ -9,6 +13,7 @@ const getters = {
   exchangeSymbol: (state: state) => {
     return state.symbol;
   },
+  ...createGetters(types)
 };
 
 interface store {
@@ -19,8 +24,8 @@ interface store {
 }
 const actions = {
   // Restful API - const static data
-  getSymbols: async (store: store) => {
-    await requestAsync("get", {
+  getMessageByTool: async (store: store) => {
+    await requestAsync(store, types.getMessageByTool, {
       url: "ccxt/symbols",
     });
   },

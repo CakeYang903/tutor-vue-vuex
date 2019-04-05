@@ -8,11 +8,7 @@ interface options {
   data?: Object;
   params?: Object;
 }
-export default async function requestAsync(
-  { commit }: store,
-  type: string,
-  options: options
-) {
+export default async function requestAsync({ commit }: store, type: string, options: options) {
   // Extract Type
   let method = "get";
   const replacedType = type.replace(/get|post|put|delete/, httpMethod => {

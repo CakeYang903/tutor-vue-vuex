@@ -1,17 +1,15 @@
-import { createTypes, createGetters, createMutations } from "./_vuexTool";
 import requestAsync from "./_vuexApi";
-
-const types = createTypes(["getTickers"]);
 
 interface state {
   [key: string]: any;
 }
+
 const state: state = {
-  symbol: "",
+  messageNoTool: null,
 };
 const getters = {
-  exchangeSymbol: (state: state) => {
-    return state.symbol;
+  messageNoTool: (state: state) => {
+    return state.messageNoTool;
   },
 };
 
@@ -21,19 +19,23 @@ interface store {
     [key: string]: any;
   };
 }
+interface response {
+  [key: string]: any,
+}
 const actions = {
   // Restful API - const static data
-  getSymbols: async (store: store) => {
-    await requestAsync(store, "get", {
+  getMessageNoTool: async (store: store) => {
+    const response: response = await requestAsync(store, "get", {
       url: "ccxt/symbols",
     });
+    store.commit('setMessageNoTool', response)
   },
 };
 
 const mutations = {
   // Navigation
-  setSymbol: (state: state, symbol: string) => {
-    state.symbol = symbol;
+  setMessageNoTool: (state: state, response: response) => {
+    state.messageNoTool = response;
   },
 };
 

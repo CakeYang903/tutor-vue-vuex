@@ -24,16 +24,16 @@ interface getters {
 interface state {
   [key: string]: any;
 }
-export const createGetters = (types: Array<string>) => {
+export const createGetters = (typeGroup: typeGroup) => {
   const getters: getters = {};
-  Object.keys(types).forEach(type => {
+  for (let type in typeGroup) {
     const replacedType = type.replace(/get|post|put|delete/, "");
     const camelCaseType = uncaptalize(replacedType);
     const camelCaseTypeRes = camelCaseType + "Res";
     getters[camelCaseTypeRes] = (state: state) => {
       return state[camelCaseTypeRes];
     };
-  });
+  }
   return getters;
 };
 
@@ -43,9 +43,9 @@ interface mutations {
 interface payload {
   [key: string]: any;
 }
-export const createMutations = (types: Array<string>) => {
+export const createMutations = (typeGroup: typeGroup) => {
   const mutations: mutations = {};
-  Object.keys(types).forEach(type => {
+  for (let type in typeGroup) {
     const replacedType = type.replace(/get|post|put|delete/, "");
     const mutationName = "set" + replacedType + "Res";
     const camelCaseType = uncaptalize(replacedType);
@@ -53,6 +53,6 @@ export const createMutations = (types: Array<string>) => {
     mutations[mutationName] = (state: state, payload: payload) => {
       Vue.set(state, attributeName, payload);
     };
-  });
+  }
   return mutations;
 };
