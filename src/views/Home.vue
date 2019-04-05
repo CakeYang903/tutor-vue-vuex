@@ -15,7 +15,7 @@ export default Vue.extend({
     HelloWorld
   },
   computed:{
-    ...mapGetters([""])
+    ...mapGetters(["messageNoToolRes"])
   },
   methods:{
     ...mapActions(["getMessageNoTool"])

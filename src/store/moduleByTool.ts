@@ -1,19 +1,17 @@
 import { createTypes, createGetters, createMutations } from "./_vuexTool";
 import requestAsync from "./_vuexApi";
 
-const types = createTypes(["getMessageByTool"]);
+/**
+ * TypeGroup作為module核心，創造了state, getter與mutation 
+ */
+const typeGroup: { [key: string]: string } = createTypes(["getMessageByTool"]);
 
-interface state {
-  [key: string]: any;
-}
-const state: state = {
-  symbol: "",
+const state = {
+  // 不用自己創造State的欄位 
 };
 const getters = {
-  exchangeSymbol: (state: state) => {
-    return state.symbol;
-  },
-  ...createGetters(types)
+  // 不用自己創造getters的欄位 
+  ...createGetters(typeGroup)
 };
 
 interface store {
@@ -25,17 +23,15 @@ interface store {
 const actions = {
   // Restful API - const static data
   getMessageByTool: async (store: store) => {
-    await requestAsync(store, types.getMessageByTool, {
-      url: "ccxt/symbols",
+    await requestAsync(store, typeGroup.getMessageByTool, {
+      url: "/messsage",
     });
   },
 };
 
 const mutations = {
-  // Navigation
-  setSymbol: (state: state, symbol: string) => {
-    state.symbol = symbol;
-  },
+  // 不用自己創造mutations的欄位 
+  ...createMutations(typeGroup)
 };
 
 export { state, getters, actions, mutations };

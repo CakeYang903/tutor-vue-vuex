@@ -1,15 +1,17 @@
-import requestAsync from "./_vuexApi";
+import requestAsync from "./_nativeApi";
 
 interface state {
   [key: string]: any;
 }
-
-const state: state = {
-  messageNoTool: null,
+/**
+ * Res stands for response or resources both start with r.e.s.
+ */
+const state = {
+  messageNoToolRes: null,
 };
 const getters = {
-  messageNoTool: (state: state) => {
-    return state.messageNoTool;
+  messageNoToolRes: (state: state) => {
+    return state.messageNoToolRes;
   },
 };
 
@@ -25,17 +27,16 @@ interface response {
 const actions = {
   // Restful API - const static data
   getMessageNoTool: async (store: store) => {
-    const response: response = await requestAsync(store, "get", {
-      url: "ccxt/symbols",
+    const response: response = await requestAsync("get", {
+      url: "/message",
     });
-    store.commit('setMessageNoTool', response)
+    store.commit('setMessageNoToolRes', response)
   },
 };
 
 const mutations = {
-  // Navigation
-  setMessageNoTool: (state: state, response: response) => {
-    state.messageNoTool = response;
+  setMessageNoToolRes: (state: state, response: response) => {
+    state.messageNoToolRes = response;
   },
 };
 
