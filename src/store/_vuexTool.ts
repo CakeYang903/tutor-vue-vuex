@@ -18,39 +18,27 @@ export const createTypes = (types: Array<string>) => {
   return typeGroup;
 };
 
-interface getters {
-  [key: string]: Function;
-}
-interface state {
-  [key: string]: any;
-}
 export const createGetters = (typeGroup: typeGroup) => {
-  const getters: getters = {};
+  const getters: any = {};
   for (let type in typeGroup) {
     const replacedType = type.replace(/get|post|put|delete/, "");
     const camelCaseType = uncaptalize(replacedType);
     const camelCaseTypeRes = camelCaseType + "Res";
-    getters[camelCaseTypeRes] = (state: state) => {
+    getters[camelCaseTypeRes] = (state: any) => {
       return state[camelCaseTypeRes];
     };
   }
   return getters;
 };
 
-interface mutations {
-  [key: string]: Function;
-}
-interface payload {
-  [key: string]: any;
-}
 export const createMutations = (typeGroup: typeGroup) => {
-  const mutations: mutations = {};
+  const mutations: any = {};
   for (let type in typeGroup) {
     const replacedType = type.replace(/get|post|put|delete/, "");
     const mutationName = "set" + replacedType + "Res";
     const camelCaseType = uncaptalize(replacedType);
     const attributeName = camelCaseType + "Res";
-    mutations[mutationName] = (state: state, payload: payload) => {
+    mutations[mutationName] = (state: any, payload: any) => {
       Vue.set(state, attributeName, payload);
     };
   }

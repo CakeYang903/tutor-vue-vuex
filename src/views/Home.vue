@@ -14,11 +14,15 @@ export default Vue.extend({
   components: {
     HelloWorld
   },
-  computed:{
-    ...mapGetters(["messageNoToolRes"])
+  mounted() {
+    this.getMessageNoTool();
+    this.getMessageByTool();
   },
-  methods:{
-    ...mapActions(["getMessageNoTool"])
+  computed: {
+    ...mapGetters(["messageNoToolRes", "messageByToolRes"])
+  },
+  methods: {
+    ...mapActions(["getMessageNoTool", "getMessageByTool"])
   }
 });
 </script>

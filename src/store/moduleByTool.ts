@@ -34,4 +34,4 @@ const mutations = {
   ...createMutations(typeGroup)
 };
 
-export { state, getters, actions, mutations };
+export default { state, getters, actions, mutations };

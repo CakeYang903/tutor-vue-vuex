@@ -1,7 +1,5 @@
 import axios from "axios";
-interface store {
-  commit: Function;
-}
+
 interface options {
   url: string;
   headers?: Object;
@@ -14,7 +12,7 @@ interface options {
  * @param type 
  * @param options 
  */
-export default async function requestAsync(store: store, type: string, options: options) {
+export default async function requestAsync(store: any, type: string, options: options) {
   const { commit } = store
   // Extract Type
   let method = "get";
