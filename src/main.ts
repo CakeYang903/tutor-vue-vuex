@@ -1,13 +1,11 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-import store from './store';
+import store from './store/index';
 import axios from "axios";
-const baseURL = `http://${process.env.VUE_APP_BASEURL}/`
+const baseURL = `${process.env.VUE_APP_BASEURL}/`
 axios.defaults.baseURL = baseURL
-console.log({
-  store
-})
+
 Vue.config.productionTip = false;
 
 new Vue({

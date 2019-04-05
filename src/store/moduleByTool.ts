@@ -24,7 +24,7 @@ const actions = {
   // Restful API - const static data
   getMessageByTool: async (store: store) => {
     await requestAsync(store, typeGroup.getMessageByTool, {
-      url: "/messsage",
+      url: "/message",
     });
   },
 };

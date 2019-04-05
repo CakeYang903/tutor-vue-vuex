@@ -1,5 +1,8 @@
 const express = require('express');
 const app = express();
+const cors = require('cors')
+
+app.use(cors())
 
 app.get('/message', function (req, res) {
   res.send('This is a message from Express Server.');

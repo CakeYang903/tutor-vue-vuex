@@ -21,5 +21,9 @@ export default async function requestAsync(method: string, options: options) {
     data,
   };
   const response = await axios(axiosConfig);
-  return response;
+  return {
+    status: response.status,
+    data: response.data,
+    statusText: response.statusText,
+  };
 }

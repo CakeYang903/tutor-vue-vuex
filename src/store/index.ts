@@ -8,13 +8,14 @@ Vue.use(Vuex);
  */
 import moduleByTool from './moduleByTool';
 import moduleNoTool from './moduleNoTool';
+const modules: any = {
+  moduleByTool,
+  moduleNoTool
+}
 // Initialize Vuex
 const debug: boolean = process.env.NODE_ENV !== "production";
 export default new Vuex.Store({
-  modules: {
-    moduleByTool,
-    moduleNoTool
-  },
+  modules,
   strict: debug,
   // plugins: debug ? [createLogger()] : []
 });

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <span>{{}}</span>
-    <span></span>
+    <p>{{messageNoToolRes.data}} via original axios</p>
+    <p>{{messageByToolRes.data}} via axios binding with vuex</p>
   </div>
 </template>
 
